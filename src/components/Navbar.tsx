@@ -1,6 +1,7 @@
 import Container from "./ui/container";
 import CFJPNLogo from "@/assets/images/CFJPNLogo.png";
 import { HeartIcon } from "@heroicons/react/20/solid";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const navButtonsStyles =
@@ -28,14 +29,16 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex gap-5">
-            <button className="rounded-full bg-white px-5 py-3 font-bold shadow-md hover:bg-pink-500 hover:text-white">
+            <Button
+              variant="default"
+              className="rounded-full bg-white px-5 py-3 font-bold text-[#020817] shadow-md hover:bg-pink-500 hover:text-white"
+            >
               Log In
-            </button>
-            <button className="group relative rounded-full bg-white p-3 shadow-md hover:bg-pink-500">
+            </Button>
+            <Button className="group relative rounded-full bg-white p-3 shadow-md hover:bg-pink-500">
               <HeartIcon className="h-6 w-6 text-pink-500 group-hover:text-white" />
-              <div className="font-bold absolute bottom-0 right-0 flex h-[14px] w-[14px] translate-x-[0%] translate-y-[-250%] items-center justify-center rounded-full bg-[#fe0c10] shadow-sm">
-              </div>
-            </button>
+              <div className="absolute bottom-0 right-0 flex h-[14px] w-[14px] translate-x-[25%] translate-y-[-175%] items-center justify-center rounded-full bg-[#fe0c10] font-bold shadow-sm"></div>
+            </Button>
           </div>
         </div>
       </nav>
