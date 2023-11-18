@@ -1,6 +1,6 @@
 import Container from "./ui/container";
 import CFJPNLogo from "@/assets/images/CFJPNLogo.png";
-import { HeartIcon, MoonIcon, SunIcon } from "@heroicons/react/20/solid";
+import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 import { Button } from "./ui/button";
 import ProfileButton from "./ui/ProfileButton";
 

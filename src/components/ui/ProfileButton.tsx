@@ -30,7 +30,7 @@ const ProfileButton = () => {
           Billing
         </DropdownMenuItem>
         <DropdownMenuItem className={`${linkHoverStyles} cursor-pointer`}>
-          Favourites
+          Favorites
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className={`${linkHoverStyles} cursor-pointer`}>
