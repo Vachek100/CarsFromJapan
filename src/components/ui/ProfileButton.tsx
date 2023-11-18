@@ -10,8 +10,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Zoropfp from "@/assets/images/zoropfp.jpg";
 
 const ProfileButton = () => {
-  const linkHoverStyles = "hover:text-pink-500 transition-colors";
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -23,19 +21,13 @@ const ProfileButton = () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className={`${linkHoverStyles} cursor-pointer`}>
-          Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem className={`${linkHoverStyles} cursor-pointer`}>
-          Billing
-        </DropdownMenuItem>
-        <DropdownMenuItem className={`${linkHoverStyles} cursor-pointer`}>
+        <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
           Favorites
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className={`${linkHoverStyles} cursor-pointer`}>
-          Log Out
-        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">Log Out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
