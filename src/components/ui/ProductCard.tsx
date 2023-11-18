@@ -16,7 +16,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
             <img
-              src={data.images?.[0]}
+              src={data.imgUrl}
               alt=""
               className="aspect-square rounded-lg object-cover transition-all duration-300 hover:scale-105"
             />

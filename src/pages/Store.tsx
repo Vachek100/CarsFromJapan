@@ -1,10 +1,13 @@
+import ProductList from "@/components/ProductList";
 import Container from "@/components/ui/container";
+import products  from "@/data/items.json";
+
 
 const Store = () => {
   return (
     <>
       <Container>
-        <h1 className="mt-12">Store</h1>
+        <ProductList items={products} />
       </Container>
     </>
   );
