@@ -22,7 +22,7 @@ const Navbar = () => {
   const navButtonsStyles = "text-white font-bold text-base ";
 
   return (
-    <nav className=" bg-[#48a2d7] px-5 shadow-xl">
+    <nav className=" bg-[#48a2d7] shadow-xl">
       <Container>
         <div className="relative flex items-center justify-between px-3 py-5 pl-28">
           <img
@@ -55,7 +55,7 @@ const Navbar = () => {
             </Button>
             <Button
               variant="ghost"
-              className="rounded-full p-3 px-5 hover:bg-pink-500"
+              className="rounded-full p-3 hover:bg-pink-500"
             >
               <SunIcon className="h-6 w-6 text-white" />
               <MoonIcon className="hidden h-6 w-6 text-white" />
