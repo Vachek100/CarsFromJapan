@@ -46,13 +46,18 @@ const Navbar = () => {
               <SheetContent side="left" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col gap-4">
                   {routes.map((route, i) => (
-                    <a
-                      key={i}
-                      href={route.path}
-                      className="flex px-2 py-1 text-lg hover:text-pink-500"
+                    <Button
+                      variant="ghost"
+                      className="mx-auto w-fit rounded-full px-5 py-3 hover:bg-pink-500 hover:text-white"
                     >
-                      {route.name}
-                    </a>
+                      <a
+                        key={i}
+                        href={route.path}
+                        className="flex px-2 py-1 text-lg"
+                      >
+                        {route.name}
+                      </a>
+                    </Button>
                   ))}
                 </nav>
               </SheetContent>

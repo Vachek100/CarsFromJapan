@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Toyota GR86",
+    "price": 23.003,
+    "imgUrl": "@/assets/images/ToyotaGR86Silver.png",
+    "year": 2000,
+    "km": 10000
+  },
+  {
+    "id": 2,
+    "name": "Mitsubishi Lancer Evolution V",
+    "price": 100.027,
+    "imgUrl": "@/assets/images/MitsubishiLancerEvolutionV.png",
+    "year": 2000,
+    "km": 58.000
+  }
+]
