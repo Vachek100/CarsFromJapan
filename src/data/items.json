@@ -1,18 +1,18 @@
 [
   {
     "id": 1,
-    "name": "Toyota GR86",
-    "price": 23.003,
-    "imgUrl": "@/assets/images/ToyotaGR86Silver.png",
+    "name": "Toyota GT86",
+    "price": 23003,
+    "imgUrl": "src/assets/images/ToyotaGT86White.jpg",
     "year": 2000,
     "km": 10000
   },
   {
     "id": 2,
-    "name": "Mitsubishi Lancer Evolution V",
-    "price": 100.027,
-    "imgUrl": "@/assets/images/MitsubishiLancerEvolutionV.png",
+    "name": "Mitsubishi Lancer Evo V",
+    "price": 100027,
+    "imgUrl": "src/assets/images/MitsubishiLancerEvolutionV.png",
     "year": 2000,
-    "km": 58.000
+    "km": 58.0
   }
 ]

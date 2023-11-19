@@ -1,18 +1,15 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-
 import { Product } from "@/utilities/types";
+import formatCurrency from "@/utilities/formatCurrency";
 
-interface ProductCard {
+type ProductCard = {
   data: Product;
-}
+};
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
   return (
-    <a
-      href="/"
-      className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2"
-    >
-      <Card className="rounded-lg border-2">
+    <div className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2">
+      <Card className="rounded-lg border-2 cursor-pointer">
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
             <img
@@ -25,12 +22,15 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         <CardFooter className="flex-col items-start">
           <div>
             <p className="text-lg font-semibold">{data.name}</p>
-            <p className="text-sm text-primary/80">{data.km}</p>
+            <p className="text-sm text-primary/80">km: {data.km}</p>
+            <p className="text-sm text-primary/80">year: {data.year}</p>
           </div>
-          <div className="flex items-center justify-between">{data?.price}</div>
+          <div className="flex items-center justify-between">
+            {formatCurrency(data?.price)}
+          </div>
         </CardFooter>
       </Card>
-    </a>
+    </div>
   );
 };
 
