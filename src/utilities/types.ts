@@ -4,5 +4,7 @@ export type Product = {
   price: number;
   imgUrl: string;
   year: number;
-  km: number;
+  km: string;
+  grade: string;
+  engine: string;
 };
