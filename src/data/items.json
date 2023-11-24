@@ -28,5 +28,45 @@
     "km": "58.000",
     "grade": "R",
     "engine": "2.000"
+  },
+  {
+    "id": 4,
+    "name": "Toyota AE86 Trueno",
+    "price": 19489,
+    "imgUrl": "src/assets/images/ToyotaAE86TruenoPanda.jpg",
+    "year": 1983,
+    "km": "99.000",
+    "grade": "3",
+    "engine": "1.600"
+  },
+  {
+    "id": 5,
+    "name": "Subaru Impreza",
+    "price": 30425,
+    "imgUrl": "src/assets/images/SubaruImpreza22BSilver.jpg",
+    "year": 1997,
+    "km": "67.000",
+    "grade": "4",
+    "engine": "2.000"
+  },
+  {
+    "id": 6,
+    "name": "Honda Civic",
+    "price": 24818,
+    "imgUrl": "src/assets/images/HondaCivic6GWhite.jpg",
+    "year": 1997,
+    "km": "80.000",
+    "grade": "R",
+    "engine": "1.600"
+  },
+  {
+    "id": 7,
+    "name": "Nissan GR-R R35",
+    "price": 54873,
+    "imgUrl": "src/assets/images/NissanR35GTR.jpg",
+    "year": 2007,
+    "km": "58.300",
+    "grade": "R",
+    "engine": "3.800"
   }
 ]
