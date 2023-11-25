@@ -68,5 +68,15 @@
     "km": "58.300",
     "grade": "R",
     "engine": "3.800"
+  },
+  {
+    "id": 8,
+    "name": "Mazda RX-7 FD",
+    "price": 78642,
+    "imgUrl": "src/assets/images/MazdaRX7FD.jpg",
+    "year": 1993,
+    "km": "7.000",
+    "grade": "R",
+    "engine": "1.300"
   }
 ]
