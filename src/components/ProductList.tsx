@@ -1,7 +1,7 @@
 import ProductCard from "@/components/ui/ProductCard";
 import { Product } from "@/utilities/types";
 
-interface ProductListProps {
+type ProductListProps = {
   items: Product[];
 }
 

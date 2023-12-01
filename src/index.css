@@ -73,4 +73,31 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Always show the scrollbar */
+html {
+  overflow-y: scroll;
+}
+
+/* Make the scrollbar transparent when not in use */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+
+/* Change the color when hovering or grabbing the scrollbar */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #555;
+}
 }
