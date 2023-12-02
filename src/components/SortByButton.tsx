@@ -1,7 +1,8 @@
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { on } from "events";
 import { useState } from "react";
 import { useEffect } from "react";
+
+//TODO: make it sort items.json by price, name, etc.
 
 type SelectOption = {
   label: string;
