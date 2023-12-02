@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ items, setFilteredItems }) => {
     <input
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      className="mx-auto mt-12 mb-8 flex h-12 w-60 rounded-full border border-solid border-pink-500 p-3 focus:outline-none"
+      className="mr-5 flex h-12 w-60 rounded-full border border-solid border-pink-500 p-3 focus:outline-none"
       type="search"
       placeholder="Search for cars here..."
     />

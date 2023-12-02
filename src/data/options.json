@@ -1,0 +1,22 @@
+[
+  {
+    "value": 1,
+    "label": "Name"
+  },
+  {
+    "value": 2,
+    "label": "Price Lowest"
+  },
+  {
+    "value": 3,
+    "label": "Price Highest"
+  },
+  {
+    "value": 4,
+    "label": "Age Lowest"
+  },
+  {
+    "value": 5,
+    "label": "Age Highest"
+  }
+]
