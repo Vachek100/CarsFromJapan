@@ -1,5 +1,5 @@
 import ProductList from "@/components/ProductList";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/SearchBarAndSortButton";
 import Container from "@/components/ui/container";
 import products from "@/data/items.json";
 import { useState } from "react";
