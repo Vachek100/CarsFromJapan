@@ -1,4 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type SearchBarProps = {
   items: any[];
@@ -7,7 +14,7 @@ type SearchBarProps = {
 
 const SearchBar: React.FC<SearchBarProps> = ({ items, setFilteredItems }) => {
   const [query, setQuery] = useState("");
-  const [sortOption, setSortOption] = useState<string | null>(null);
+  const [sortOption, setSortOption] = useState<string>();
 
   const filteredItems = useMemo(() => {
     let filtered = items.filter((item) =>
@@ -48,18 +55,29 @@ const SearchBar: React.FC<SearchBarProps> = ({ items, setFilteredItems }) => {
         type="search"
         placeholder="Search for cars here..."
       />
-      <select
-        value={sortOption || ""}
-        onChange={(e) => setSortOption(e.target.value || null)}
-        className="ml-2 h-12 rounded-full border border-solid border-pink-500 p-3 focus:outline-none"
-      >
-        <option value="">Sort by</option>
-        <option value="name">Name</option>
-        <option value="priceUp">Price up</option>
-        <option value="priceDown">Price down</option>
-        <option value="oldest">Oldest</option>
-        <option value="youngest">Youngest</option>
-      </select>
+
+      <Select value={sortOption} onValueChange={(e) => setSortOption(e)}>
+        <SelectTrigger className="text-md ml-2 h-12 w-[180px] rounded-full border border-solid border-pink-500 p-3 focus:outline-none">
+          <SelectValue placeholder="Sort by" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem className="cursor-pointer" value="name">
+            Name
+          </SelectItem>
+          <SelectItem className="cursor-pointer" value="priceUp">
+            Price up
+          </SelectItem>
+          <SelectItem className="cursor-pointer" value="priceDown">
+            Price down
+          </SelectItem>
+          <SelectItem className="cursor-pointer" value="oldest">
+            Oldest
+          </SelectItem>
+          <SelectItem className="cursor-pointer" value="youngest">
+            Youngest
+          </SelectItem>
+        </SelectContent>
+      </Select>
     </div>
   );
 };
