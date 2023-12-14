@@ -18,37 +18,37 @@ const AddressForm = ({
   zip,
   updateFields,
 }: AddressFormProps) => {
-  const inputStyle = "rounded-md border-2 border-solid border-white px-2 py-1";
+  const inputStyle = "rounded-md border border-solid border-[#001e2b] px-2 py-1";
 
   return (
     <FormWrapper title="User Address">
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">Street</label>
+      <label className=" mt-1 py-1 text-[#001e2b]">Street</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         autoFocus
         required
         type="text"
         value={street}
         onChange={(e) => updateFields({ street: e.target.value })}
       />
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">City</label>
+      <label className=" mt-1 py-1 text-[#001e2b]">City</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         required
         type="text"
         value={city}
         onChange={(e) => updateFields({ city: e.target.value })}
       />
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">State</label>
+      <label className=" mt-1 py-1 text-[#001e2b]">State</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         type="text"
         value={state}
         onChange={(e) => updateFields({ state: e.target.value })}
       />
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">Zip</label>
+      <label className=" mt-1 py-1 text-[#001e2b]">Zip</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         required
         type="text"
         value={zip}

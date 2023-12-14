@@ -10,24 +10,24 @@ type AccountFormProps = AccountData & {
 };
 
 const AccountForm = ({ email, password, updateFields }: AccountFormProps) => {
-  const inputStyle = "rounded-md border-2 border-solid border-white px-2 py-1";
+  const inputStyle = "rounded-md border border-solid border-[#001e2b] px-2 py-1";
 
   return (
     <FormWrapper title="Account Creation">
-      <label className="font-Poppins mt-1 py-1 align-middle text-[#b8c4c2]">
+      <label className=" mt-1 py-1 align-middle text-[#001e2b]">
         Email
       </label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         autoFocus
         required
         type="email"
         value={email}
         onChange={(e) => updateFields({ email: e.target.value })}
       />
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">Password</label>
+      <label className=" mt-1 py-1 text-[#001e2b]">Password</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         required
         type="password"
         value={password}

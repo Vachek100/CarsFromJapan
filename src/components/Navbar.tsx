@@ -5,7 +5,7 @@ import ProfileButton from "./ui/ProfileButton";
 import { ModeToggle } from "./ModeToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Bars3Icon } from "@heroicons/react/20/solid";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const routes = [
   {
@@ -69,9 +69,9 @@ const Navbar = () => {
                   variant="ghost"
                   className="hidden rounded-full px-5 py-3 hover:bg-pink-500 md:flex"
                 >
-                  <a key={i} href={route.path} className={navButtonsStyles}>
+                  <Link key={i} to={route.path} className={navButtonsStyles}>
                     {route.name}
-                  </a>
+                  </Link>
                 </Button>
               ))}
             </div>

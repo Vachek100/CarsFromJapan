@@ -16,31 +16,30 @@ const UserForm = ({
   age,
   updateFields,
 }: UserFormProps) => {
-  const inputStyle = "rounded-md border-2 border-solid border-white px-2 py-1";
+  const inputStyle =
+    "rounded-md border border-solid border-[#001e2b] px-2 py-1";
   return (
     <FormWrapper title="User Details">
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">
-        First Name
-      </label>
+      <label className=" mt-1 py-1 text-[#001e2b] ">First Name</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         autoFocus
         required
         type="text"
         value={firstName}
         onChange={(e) => updateFields({ firstName: e.target.value })}
       />
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">Last Name</label>
+      <label className=" mt-1 py-1 text-[#001e2b] ">Last Name</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         required
         type="text"
         value={lastName}
         onChange={(e) => updateFields({ lastName: e.target.value })}
       />
-      <label className="font-Poppins mt-1 py-1 text-[#b8c4c2]">Age</label>
+      <label className=" mt-1 py-1 text-[#001e2b] ">Age</label>
       <input
-        className={`${inputStyle} font-Poppins`}
+        className={`${inputStyle} `}
         required
         min={1}
         type="number"

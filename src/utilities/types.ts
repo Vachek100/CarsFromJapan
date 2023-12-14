@@ -7,5 +7,6 @@ export type Product = {
   km: string;
   grade: string;
   engine: string;
+  route:string;
 };
 

@@ -8,10 +8,10 @@ type FormWrapperProps = {
 const FormWrapper = ({ title, children }: FormWrapperProps) => {
   return (
     <>
-      <h2 className="font-Noto m-0 mb-8 text-center text-4xl text-white">
-        <span className="text-white">{title.split(" ")[0]}</span>
+      <h2 className="font-Noto m-0 mb-8 text-center text-4xl">
+        <span className="text-[#48a2d7]">{title.split(" ")[0]}</span>
         <span> </span>
-        <span className="text-[#00ed64]">{title.split(" ")[1]}</span>
+        <span className="text-pink-500">{title.split(" ")[1]}</span>
       </h2>
       <div className="mx-auto mb-12 grid max-w-md grid-cols-[auto_minmax(auto,400px)] gap-4">
         {children}

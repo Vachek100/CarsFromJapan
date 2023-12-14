@@ -5,18 +5,20 @@ import Store from "@/pages/Store";
 import About from "@/pages/About";
 import SignUp from "@/pages/SignUp";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Routes>
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route element={<Navbar />}>
             <Route path="/" element={<Home />} />
             <Route path="/store" element={<Store />} />
             <Route path="/about" element={<About />} />
           </Route>
+          <Route path="/*" element={<NotFound/>} />
         </Routes>
       </ThemeProvider>
     </>
