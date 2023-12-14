@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Zoropfp from "@/assets/images/zoropfp.jpg";
+import { Link } from "react-router-dom";
+
 
 const ProfileButton = () => {
   return (
@@ -27,7 +29,9 @@ const ProfileButton = () => {
           Favorites
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">Log Out</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+          <Link to="/signup" target="blank">Sign Up</Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
