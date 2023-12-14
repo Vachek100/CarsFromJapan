@@ -5,6 +5,8 @@ import { useMultistepForm } from "@/utilities/useMultistepForm";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//TODO after sign up show alert or something like that with successful signing up
+
 type FormData = {
   firstName: string;
   lastName: string;
