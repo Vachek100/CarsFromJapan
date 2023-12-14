@@ -13,7 +13,7 @@ const AccountForm = ({ email, password, updateFields }: AccountFormProps) => {
   const inputStyle = "rounded-md border border-solid border-[#001e2b] px-2 py-1";
 
   return (
-    <FormWrapper title="Account Creation">
+    <FormWrapper>
       <label className=" mt-1 py-1 align-middle text-[#001e2b]">
         Email
       </label>

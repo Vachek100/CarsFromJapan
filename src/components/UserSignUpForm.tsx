@@ -19,7 +19,7 @@ const UserForm = ({
   const inputStyle =
     "rounded-md border border-solid border-[#001e2b] px-2 py-1";
   return (
-    <FormWrapper title="User Details">
+    <FormWrapper>
       <label className=" mt-1 py-1 text-[#001e2b] ">First Name</label>
       <input
         className={`${inputStyle} `}

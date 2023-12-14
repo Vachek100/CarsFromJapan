@@ -21,7 +21,7 @@ const AddressForm = ({
   const inputStyle = "rounded-md border border-solid border-[#001e2b] px-2 py-1";
 
   return (
-    <FormWrapper title="User Address">
+    <FormWrapper>
       <label className=" mt-1 py-1 text-[#001e2b]">Street</label>
       <input
         className={`${inputStyle} `}
