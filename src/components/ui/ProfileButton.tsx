@@ -30,7 +30,7 @@ const ProfileButton = () => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer">
-          <Link to="/sign-up" target="blank">Sign Up</Link>
+          <Link to="/log-in" target="blank">Log In</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

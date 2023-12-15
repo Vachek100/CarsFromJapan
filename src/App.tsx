@@ -6,6 +6,7 @@ import About from "@/pages/About";
 import SignUp from "@/pages/SignUp";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import NotFound from "./pages/NotFound";
+import LogIn from "./pages/LogIn";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Routes>
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/log-in" element={<LogIn />} />
           <Route element={<Navbar />}>
             <Route path="/" element={<Home />} />
             <Route path="/store" element={<Store />} />

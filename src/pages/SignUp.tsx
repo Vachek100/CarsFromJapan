@@ -3,7 +3,7 @@ import AddressForm from "@/components/AddressSignUpForm";
 import UserForm from "@/components/UserSignUpForm";
 import { useMultistepForm } from "@/utilities/useMultistepForm";
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //TODO after sign up show alert or something like that with successful signing up
 
@@ -86,6 +86,9 @@ function SignUp() {
               Back
             </button>
           )}
+          <Link className="text-center text-pink-500" to={"/log-in"}>
+            You already have an account? Log in.
+          </Link>
         </div>
       </form>
     </div>
