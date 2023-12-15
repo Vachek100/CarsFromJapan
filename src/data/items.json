@@ -80,6 +80,45 @@
     "km": "7.000",
     "grade": "R",
     "engine": "1.300"
+  },
+  {
+    "id": 9,
+    "name": "Mazda RX-8",
+    "price": 5116,
+    "imgUrl": "src/assets/images/MazdaRX8.jpg",
+    "year": 2003,
+    "km": "37.000",
+    "grade": "R",
+    "engine": "1.300"
+  },
+  {
+    "id": 10,
+    "name": "Nissan 180sx",
+    "price": 14887,
+    "imgUrl": "src/assets/images/Nissan180sx.jpg",
+    "year": 1993,
+    "km": "91.000",
+    "grade": "R",
+    "engine": "2.000"
+  },
+  {
+    "id": 11,
+    "name": "Nissan Silvia S13",
+    "price": 20909,
+    "imgUrl": "src/assets/images/NissanSilviaS13.jpg",
+    "year": 1999,
+    "km": "23.000",
+    "grade": "4",
+    "engine": "2.000"
+  },
+  {
+    "id": 12,
+    "name": "Toyota GR86",
+    "price": 20079,
+    "imgUrl": "src/assets/images/ToyotaGR86.jpg",
+    "year": 2022,
+    "km": "26.000",
+    "grade": "R",
+    "engine": "2.400"
   }
-  
 ]
