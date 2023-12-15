@@ -22,7 +22,7 @@ function LogIn() {
       return { ...prev, ...fields };
     });
   };
-  const { step, isFirstStep, isLastStep, back, next } = useMultistepForm([
+  const { step } = useMultistepForm([
     <LogInForm {...data} updateFields={updateFields} />,
   ]);
 
