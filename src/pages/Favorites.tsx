@@ -1,5 +1,11 @@
+import Container from "@/components/ui/container";
+
 const Favorites = () => {
-  return <div>Favorites</div>;
+  return (
+    <Container>
+      <div className="mt-12">Favorites</div>
+    </Container>
+  );
 };
 
 export default Favorites;
