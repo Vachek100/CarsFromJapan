@@ -3,6 +3,11 @@ import { Product } from "@/utilities/types";
 import formatCurrency from "@/utilities/formatCurrency";
 import { HeartIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
+import dayjs from "dayjs";
+import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
+
+dayjs.extend(LocalizedFormat);
 
 type ProductCard = {
   data: Product;
@@ -24,7 +29,18 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
       <Card className="relative cursor-pointer rounded-lg border-2">
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
-            <button className="group absolute translate-x-1.5 translate-y-1.5 rounded-full bg-white p-[.375rem]">
+            <button
+              onClick={() =>
+                toast(`${data.name} has been added to favorites`, {
+                  description: `${dayjs().format("L LT")}`,
+                  action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                  },
+                })
+              }
+              className="group absolute translate-x-1.5 translate-y-1.5 rounded-full bg-white p-[.375rem]"
+            >
               <HeartIcon className="h-7 w-7 text-gray-400 group-hover:text-pink-500" />
             </button>
             <Link to={data.route}>
