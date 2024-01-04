@@ -13,9 +13,9 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
       <Card className="relative cursor-pointer rounded-lg border-2">
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
-            <div className="group absolute z-10 translate-x-2 translate-y-2 rounded-full bg-white p-[.375rem]">
+            <button className="group absolute z-10 translate-x-2 translate-y-2 rounded-full bg-white p-[.375rem]">
               <HeartIcon className="h-7 w-7 text-gray-400 group-hover:text-pink-500" />
-            </div>
+            </button>
             <img
               src={data.imgUrl}
               alt=""
