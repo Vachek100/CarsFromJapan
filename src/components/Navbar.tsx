@@ -2,7 +2,6 @@ import Container from "./ui/container";
 import CFJPNLogo from "@/assets/images/CFJPNLogo.png";
 import { Button } from "./ui/button";
 import ProfileButton from "./ui/ProfileButton";
-import { ModeToggle } from "./ModeToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { Link, Outlet } from "react-router-dom";
@@ -76,7 +75,6 @@ const Navbar = () => {
               ))}
             </div>
             <div className="flex items-center gap-5">
-              <ModeToggle />
               <ProfileButton />
             </div>
           </div>
