@@ -9,26 +9,41 @@ type ProductCard = {
 };
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
+  const handleItemClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target instanceof HTMLAnchorElement) {
+    } else {
+      e.preventDefault();
+    }
+  };
+
   return (
-    <div className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2">
+    <div
+      onClick={handleItemClick}
+      className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2"
+    >
       <Card className="relative cursor-pointer rounded-lg border-2">
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
-            <button className="group absolute z-50 translate-x-1.5 translate-y-1.5 rounded-full bg-white p-[.375rem]">
+            <button className="group absolute translate-x-1.5 translate-y-1.5 rounded-full bg-white p-[.375rem]">
               <HeartIcon className="h-7 w-7 text-gray-400 group-hover:text-pink-500" />
             </button>
-            <img
-              src={data.imgUrl}
-              alt=""
-              className="aspect-square rounded-lg object-cover duration-300"
-            />
+            <Link to={data.route}>
+              <img
+                src={data.imgUrl}
+                alt=""
+                className="aspect-square rounded-lg object-cover duration-300"
+              />
+            </Link>
           </div>
         </CardContent>
         <CardFooter className="my-auto flex-col items-start justify-between p-6 pt-0">
           <div>
             <Link to={data.route}>
-              <p className="py-1 pb-3 text-xl font-semibold">{data.name}</p>
+              <p className="py-1 pb-3 text-xl font-semibold hover:text-pink-600">
+                {data.name}
+              </p>
             </Link>
+
             <p className="py-1 text-sm text-primary/80">km: {data.km}</p>
             <p className="py-1 text-sm text-primary/80">year: {data.year}</p>
             <p className="py-1 text-sm text-primary/80">
