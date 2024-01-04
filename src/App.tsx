@@ -6,20 +6,22 @@ import About from "@/pages/About";
 import SignUp from "@/pages/SignUp";
 import NotFound from "./pages/NotFound";
 import LogIn from "./pages/LogIn";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
     <>
-        <Routes>
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/log-in" element={<LogIn />} />
-          <Route element={<Navbar />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/about" element={<About />} />
-          </Route>
-          <Route path="/*" element={<NotFound/>} />
-        </Routes>
+      <Routes>
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/log-in" element={<LogIn />} />
+        <Route element={<Navbar />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Route>
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
