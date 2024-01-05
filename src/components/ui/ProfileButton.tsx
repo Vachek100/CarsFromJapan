@@ -22,7 +22,9 @@ const ProfileButton = () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+          <Link to="/profile">Profile</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
           <Link to="/favorites">Favorites</Link>

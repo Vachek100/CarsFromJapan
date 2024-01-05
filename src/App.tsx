@@ -7,6 +7,7 @@ import SignUp from "@/pages/SignUp";
 import NotFound from "./pages/NotFound";
 import LogIn from "./pages/LogIn";
 import Favorites from "./pages/Favorites";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/favorites" element={<Favorites />} />
         </Route>
         <Route path="/*" element={<NotFound />} />
