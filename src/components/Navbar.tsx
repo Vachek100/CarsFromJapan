@@ -51,13 +51,13 @@ const Navbar = () => {
                         variant="ghost"
                         className="mx-auto w-fit rounded-full px-5 py-3 hover:bg-pink-500 hover:text-white"
                       >
-                        <a
+                        <Link
                           key={i}
-                          href={route.path}
+                          to={route.path}
                           className="flex px-2 py-1 text-lg"
                         >
                           {route.name}
-                        </a>
+                        </Link>
                       </Button>
                     ))}
                   </nav>
