@@ -14,18 +14,8 @@ type ProductCard = {
 };
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
-  const handleItemClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target instanceof HTMLAnchorElement) {
-    } else {
-      e.preventDefault();
-    }
-  };
-
   return (
-    <div
-      onClick={handleItemClick}
-      className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2"
-    >
+    <div className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2">
       <Card className="relative cursor-pointer rounded-lg border-2">
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
