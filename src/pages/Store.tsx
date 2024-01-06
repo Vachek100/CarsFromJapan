@@ -5,10 +5,9 @@ import { Toaster } from "@/components/ui/sonner";
 import products from "@/data/items.json";
 import { useState } from "react";
 
-
 const Store = () => {
   const [filteredItems, setFilteredItems] = useState(products);
-  
+
   return (
     <>
       <Container>

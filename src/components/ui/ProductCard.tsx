@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
+import { useState } from "react";
 
 dayjs.extend(LocalizedFormat);
 
@@ -14,24 +15,38 @@ type ProductCard = {
 };
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleAddToFavorites = () => {
+    setIsFavorite(true);
+  };
+
   return (
     <div className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2">
       <Card className="relative cursor-pointer rounded-lg border-2">
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
             <button
-              onClick={() =>
+              onClick={() => {
+                handleAddToFavorites();
                 toast(`${data.name} has been added to favorites`, {
                   description: `${dayjs().format("L LT")}`,
                   action: {
                     label: "Undo",
-                    onClick: () => console.log("Undo"),
+                    onClick: () => {
+                      setIsFavorite(false);
+                      console.log("Undo");
+                    },
                   },
-                })
-              }
+                });
+              }}
               className="group absolute translate-x-1.5 translate-y-1.5 rounded-full bg-white p-[.375rem]"
             >
-              <HeartIcon className="h-7 w-7 text-gray-400 group-hover:text-pink-500" />
+              <HeartIcon
+                className={`h-7 w-7 hover:text-pink-500 ${
+                  isFavorite ? "text-pink-500" : "text-gray-400"
+                }`}
+              />
             </button>
             <Link to={data.route}>
               <img
