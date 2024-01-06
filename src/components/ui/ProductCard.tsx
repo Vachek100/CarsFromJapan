@@ -18,7 +18,21 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleAddToFavorites = () => {
-    setIsFavorite(true);
+    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+
+    const toastMessage = isFavorite
+      ? `${data.name} has been removed from favorites`
+      : `${data.name} has been added to favorites`;
+
+    toast(toastMessage, {
+      description: `${dayjs().format("L LT")}`,
+      action: {
+        label: "Undo",
+        onClick: () => {
+          setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+        },
+      },
+    });
   };
 
   return (
@@ -27,23 +41,11 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
             <button
-              onClick={() => {
-                handleAddToFavorites();
-                toast(`${data.name} has been added to favorites`, {
-                  description: `${dayjs().format("L LT")}`,
-                  action: {
-                    label: "Undo",
-                    onClick: () => {
-                      setIsFavorite(false);
-                      console.log("Undo");
-                    },
-                  },
-                });
-              }}
+              onClick={handleAddToFavorites}
               className="group absolute translate-x-1.5 translate-y-1.5 rounded-full bg-white p-[.375rem]"
             >
               <HeartIcon
-                className={`h-7 w-7 hover:text-pink-500 ${
+                className={`h-7 w-7 ${
                   isFavorite ? "text-pink-500" : "text-gray-400"
                 }`}
               />
