@@ -47,12 +47,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ items, setFilteredItems }) => {
   }, [filteredItems, setFilteredItems]);
 
   return (
-    <div className="flex">
+    //TODO ---------------------- dodělat to pod tímhle (malé obrazovky broken) --------------------
+    <div className="extrasm:flex">
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="mr-5 flex h-12 w-60 rounded-full border border-solid border-pink-500 p-3 focus:outline-none"
         type="search"
+        name="search"
         placeholder="Search for cars here..."
       />
 

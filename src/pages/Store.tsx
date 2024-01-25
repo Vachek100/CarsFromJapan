@@ -10,7 +10,7 @@ const Store = () => {
   return (
     <>
       <Container>
-        <div className="mx-16 mb-8 mt-12 flex items-center justify-center">
+        <div className="mb-8 mt-12 flex items-center justify-center">
           <SearchBar items={products} setFilteredItems={setFilteredItems} />
         </div>
         <ProductList items={filteredItems} />

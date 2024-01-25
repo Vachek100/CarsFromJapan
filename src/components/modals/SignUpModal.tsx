@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,13 +15,14 @@ import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import { auth } from "@/firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import Loader from "@/components/Loader";
 
 dayjs.extend(LocalizedFormat);
 
-const handleAccountSuccesfulCreation = () => {
+const handleAccountSuccessfulCreation = () => {
   const toastMessage = "Account has been created.";
 
-  toast(toastMessage, {
+  toast.success(toastMessage, {
     description: `${dayjs().format("L LT")}`,
   });
 };
@@ -29,7 +30,39 @@ const handleAccountSuccesfulCreation = () => {
 const handleErrorMessage = () => {
   const toastMessage = "Error during signup";
 
-  toast(toastMessage, {
+  toast.error(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
+const handlePasswordLengthMessage = () => {
+  const toastMessage = "Password should be at least 6 characters long.";
+
+  toast.error(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
+const handlePasswordMatchMessage = () => {
+  const toastMessage = "Passwords do not match.";
+
+  toast.error(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
+const handleEmailAlreadyInUseMessage = () => {
+  const toastMessage = "Email already in use.";
+
+  toast.error(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
+const handleEmptyFieldErrorMessage = () => {
+  const toastMessage = "Please fill all fields.";
+
+  toast.error(toastMessage, {
     description: `${dayjs().format("L LT")}`,
   });
 };
@@ -38,6 +71,7 @@ type SignUpProps = {};
 
 const SignUpModal: React.FC<SignUpProps> = () => {
   const [inputs, setInputs] = useState({
+    displayName: "",
     email: "",
     password: "",
     passwordConfirm: "",
@@ -52,28 +86,41 @@ const SignUpModal: React.FC<SignUpProps> = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { email, password, passwordConfirm } = inputs;
+    if (
+      !inputs.displayName ||
+      !inputs.email ||
+      !inputs.password ||
+      !inputs.passwordConfirm
+    )
+      return handleEmptyFieldErrorMessage();
 
-    if (password.length < 6) {
-      alert("Password should be at least 6 characters long.");
+    if (inputs.password.length < 6) {
+      handlePasswordLengthMessage();
       return;
     }
 
-    if (password !== passwordConfirm) {
-      alert("Passwords do not match.");
+    if (inputs.password !== inputs.passwordConfirm) {
+      handlePasswordMatchMessage();
       return;
     }
 
     try {
-      const newUser = await createUserWithEmailAndPassword(email, password);
+      const newUser = await createUserWithEmailAndPassword(
+        inputs.email,
+        inputs.password,
+      );
 
       if (newUser) {
-        handleAccountSuccesfulCreation();
+        handleAccountSuccessfulCreation();
       }
     } catch (error: any) {
       handleErrorMessage();
     }
   };
+
+  useEffect(() => {
+    if (error) handleEmailAlreadyInUseMessage();
+  }, [error]);
 
   return (
     <form onSubmit={handleRegister}>
@@ -86,6 +133,17 @@ const SignUpModal: React.FC<SignUpProps> = () => {
         </CardHeader>
         <CardContent className="pt-6">
           <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="displayName">Name</Label>
+              <Input
+                onChange={handleChangeInput}
+                type="displayName"
+                name="displayName"
+                id="displayName"
+                placeholder="Name"
+                required
+              />
+            </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -126,7 +184,10 @@ const SignUpModal: React.FC<SignUpProps> = () => {
             type="submit"
             className="w-full bg-[#48a2d7] hover:bg-[#367ba3]"
           >
-            Sign Up
+            {/*
+          //TODO add loader(spinner)
+          */}
+            {loading ? <Loader /> : "Sign Up"}
           </Button>
           <p>
             Already have an account?{" "}
