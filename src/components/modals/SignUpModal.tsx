@@ -16,6 +16,9 @@ import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import { auth } from "@/firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import Loader from "@/components/Loader";
+import { authModalState } from "@/atoms/authModalAtom";
+import { useSetRecoilState } from "recoil";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 dayjs.extend(LocalizedFormat);
 
@@ -70,6 +73,11 @@ const handleEmptyFieldErrorMessage = () => {
 type SignUpProps = {};
 
 const SignUpModal: React.FC<SignUpProps> = () => {
+  const setAuthModalState = useSetRecoilState(authModalState);
+
+  const handleClick = () => {
+    setAuthModalState((prev) => ({ ...prev, type: "login" }));
+  };
   const [inputs, setInputs] = useState({
     displayName: "",
     email: "",
@@ -125,7 +133,7 @@ const SignUpModal: React.FC<SignUpProps> = () => {
   return (
     <form onSubmit={handleRegister}>
       <Card className="w-[350px]">
-        <CardHeader className="bg-[#48a2d7] text-center">
+        <CardHeader className="rounded-t-xl bg-[#48a2d7] text-center">
           <CardTitle className="text-2xl text-white">Sign Up</CardTitle>
           <CardDescription className="text-white">
             To unlock additional cool stuff
@@ -184,14 +192,14 @@ const SignUpModal: React.FC<SignUpProps> = () => {
             type="submit"
             className="w-full bg-[#48a2d7] hover:bg-[#367ba3]"
           >
-            {/*
-          //TODO add loader(spinner)
-          */}
             {loading ? <Loader /> : "Sign Up"}
           </Button>
           <p>
             Already have an account?{" "}
-            <span className="cursor-pointer text-pink-500 hover:text-pink-700">
+            <span
+              onClick={handleClick}
+              className="cursor-pointer text-pink-500 hover:text-pink-700"
+            >
               Log in
             </span>
           </p>
@@ -202,3 +210,4 @@ const SignUpModal: React.FC<SignUpProps> = () => {
 };
 
 export default SignUpModal;
+

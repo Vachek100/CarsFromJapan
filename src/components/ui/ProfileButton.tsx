@@ -9,8 +9,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Zoropfp from "@/assets/images/zoropfp.jpg";
 import { Link } from "react-router-dom";
+import AuthModal from "../modals/AuthModal";
+
 
 const ProfileButton = () => {
+
+ 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -30,11 +34,9 @@ const ProfileButton = () => {
           <Link to="/favorites">Favorites</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">
-          <Link to="/log-in" target="blank">
-            Log In
-          </Link>
-        </DropdownMenuItem>
+        <p className="hover:bg-[#f1f5f9] px-2 py-1.5 text-sm cursor-pointer rounded-sm">
+          <AuthModal />
+        </p>
       </DropdownMenuContent>
     </DropdownMenu>
   );

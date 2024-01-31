@@ -6,8 +6,8 @@ import About from "@/pages/About";
 import NotFound from "./pages/NotFound";
 import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
-import Login from "./pages/Login";
 import { Toaster } from "@/components/ui/sonner";
+
 
 function App() {
   return (
@@ -21,7 +21,6 @@ function App() {
             </>
           }
         >
-          <Route path="/log-in" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />

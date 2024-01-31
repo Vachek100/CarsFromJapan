@@ -42,7 +42,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
             <button
               onClick={handleAddToFavorites}
-              className="group absolute translate-x-1.5 translate-y-1.5 rounded-full bg-white p-[.375rem]"
+              className="group absolute right-1 top-1 rounded-full bg-white p-[.375rem]"
             >
               <HeartIcon
                 className={`h-7 w-7 ${

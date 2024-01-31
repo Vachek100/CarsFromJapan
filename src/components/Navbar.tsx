@@ -8,14 +8,17 @@ import { Link, Outlet } from "react-router-dom";
 
 const routes = [
   {
+    key: 0,
     name: "Home",
     path: "/",
   },
   {
+    key: 1,
     name: "Store",
     path: "/store",
   },
   {
+    key: 2,
     name: "About",
     path: "/about",
   },
@@ -46,13 +49,13 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-[300px] sm:w-[400px]">
                   <nav className="flex flex-col gap-4">
-                    {routes.map((route, i) => (
+                    {routes.map((route) => (
                       <Button
                         variant="ghost"
                         className="mx-auto w-fit rounded-full px-5 py-3 hover:bg-pink-500 hover:text-white"
                       >
                         <Link
-                          key={i}
+                          key={route.key}
                           to={route.path}
                           className="flex px-2 py-1 text-lg"
                         >

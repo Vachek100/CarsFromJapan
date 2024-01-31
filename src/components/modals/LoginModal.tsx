@@ -14,16 +14,16 @@ import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { redirect } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { authModalState } from "@/atoms/authModalAtom";
 
 import { toast } from "sonner";
 import Loader from "../Loader";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 dayjs.extend(LocalizedFormat);
 
 type LoginProps = {};
-
-type RedirectFunction = (url: string, init?: number | ResponseInit) => Response;
 
 const handleEmptyFieldErrorMessage = () => {
   const toastMessage = "Please fill all fields.";
@@ -50,8 +50,7 @@ const handleSuccessfulLoginMessage = () => {
 };
 
 const handleLoginErrorMessage = () => {
-  const toastMessage =
-    "Wrong email or password. Try again.";
+  const toastMessage = "Wrong email or password. Try again.";
 
   toast.error(toastMessage, {
     description: `${dayjs().format("L LT")}`,
@@ -59,6 +58,11 @@ const handleLoginErrorMessage = () => {
 };
 
 const LoginModal: React.FC<LoginProps> = () => {
+  const setAuthModalState = useSetRecoilState(authModalState);
+  const handleClick = (type: "login" | "register" | "forgotPassword") => {
+    setAuthModalState((prev) => ({ ...prev, type }));
+  };
+
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -82,7 +86,6 @@ const LoginModal: React.FC<LoginProps> = () => {
       );
       if (!newUser) return;
       handleSuccessfulLoginMessage();
-      redirect("/profile");
     } catch (error: any) {
       handleErrorMessage();
     }
@@ -95,7 +98,7 @@ const LoginModal: React.FC<LoginProps> = () => {
   return (
     <form onSubmit={handleLogin}>
       <Card className="w-[350px]">
-        <CardHeader className="bg-[#48a2d7] text-center">
+        <CardHeader className="rounded-t-xl bg-[#48a2d7] text-center">
           <CardTitle className="text-2xl text-white">Log In</CardTitle>
           <CardDescription className="text-white">
             To access your profile
@@ -135,7 +138,10 @@ const LoginModal: React.FC<LoginProps> = () => {
           </Button>
           <p>
             Don't have an account yet?{" "}
-            <span className="cursor-pointer text-pink-500 hover:text-pink-700">
+            <span
+              onClick={() => handleClick("register")}
+              className="cursor-pointer text-pink-500 hover:text-pink-700"
+            >
               Sign Up
             </span>
           </p>
@@ -146,3 +152,5 @@ const LoginModal: React.FC<LoginProps> = () => {
 };
 
 export default LoginModal;
+
+
