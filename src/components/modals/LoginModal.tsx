@@ -19,7 +19,6 @@ import { authModalState } from "@/atoms/authModalAtom";
 
 import { toast } from "sonner";
 import Loader from "../Loader";
-import { XMarkIcon } from "@heroicons/react/20/solid";
 
 dayjs.extend(LocalizedFormat);
 
@@ -104,7 +103,7 @@ const LoginModal: React.FC<LoginProps> = () => {
             To access your profile
           </CardDescription>
         </CardHeader>
-        <CardContent className="pt-6">
+        <CardContent className="pb-2 pt-6">
           <form>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
@@ -132,7 +131,13 @@ const LoginModal: React.FC<LoginProps> = () => {
             </div>
           </form>
         </CardContent>
-        <CardFooter className="flex flex-col justify-center gap-3 pb-6">
+        <p
+          onClick={() => handleClick("forgotPassword")}
+          className="cursor-pointer px-6 text-sm text-pink-500 hover:text-pink-700"
+        >
+          Forgot password?
+        </p>
+        <CardFooter className="flex flex-col justify-center gap-3 py-6">
           <Button className="w-full bg-[#48a2d7] hover:bg-[#367ba3]">
             {loading ? <Loader /> : "Log In"}
           </Button>
@@ -152,5 +157,3 @@ const LoginModal: React.FC<LoginProps> = () => {
 };
 
 export default LoginModal;
-
-
