@@ -6,7 +6,7 @@ import SignUpModal from "./SignUpModal";
 import ResetPasswordModal from "./ResetPasswordModal";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
-import { useEffect, useState } from "react";
+
 import Logout from "../Logout";
 
 type AuthModalProps = {};
@@ -17,7 +17,7 @@ const AuthModal: React.FC<AuthModalProps> = () => {
     setAuthModalState((prev) => ({ ...prev, type }));
   };
   const authModal = useRecoilValue(authModalState);
-  const [user, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   if (user) return <Logout />;
 
