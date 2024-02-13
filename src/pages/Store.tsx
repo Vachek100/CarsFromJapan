@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import Container from "@/components/ui/container";
 import ProductList from "@/components/ProductList";
 import SortBy from "@/components/SortBy";
-import SearchBar from "@/components/SearchBar"; // Import the SearchBar component
+import SearchBar from "@/components/SearchBar"; 
 
 const Store: React.FC = () => {
   const [sortBy, setSortBy] = useState<string>("");
-  const [searchQuery, setSearchQuery] = useState<string>(""); // State for search query
+  const [searchQuery, setSearchQuery] = useState<string>(""); 
 
   const handleSort = (option: string) => {
     setSortBy(option);
@@ -20,13 +20,11 @@ const Store: React.FC = () => {
 
   return (
     <Container>
-      <div className="mb-8 mt-12 flex items-center justify-between">
-        <SortBy onSort={handleSort} />
+      <div className="mb-8 mt-12 flex items-center justify-evenly gap-5">
         <SearchBar onSearch={handleSearch} />{" "}
-        {/* Render the SearchBar component */}
+        <SortBy onSort={handleSort} />
       </div>
-      <ProductList sortBy={sortBy} searchQuery={searchQuery} />{" "}
-      {/* Pass searchQuery as prop */}
+      <ProductList sortBy={sortBy} searchQuery={searchQuery} />
     </Container>
   );
 };
