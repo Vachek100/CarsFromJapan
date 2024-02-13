@@ -1,8 +1,8 @@
-export type Product = {
-  id: number;
+export type DBCar = {
+  id: string;
   name: string;
   price: number;
-  imgUrl: string;
+  imgURL: string;
   year: number;
   km: string;
   grade: string;

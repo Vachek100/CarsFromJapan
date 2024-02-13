@@ -1,5 +1,5 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Product } from "@/utilities/types";
+import { DBCar } from "@/utilities/car";
 import formatCurrency from "@/utilities/formatCurrency";
 import { HeartIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import { useState } from "react";
 dayjs.extend(LocalizedFormat);
 
 type ProductCard = {
-  data: Product;
+  data: DBCar;
 };
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
@@ -52,7 +52,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
             </button>
             <Link to={data.route}>
               <img
-                src={data.imgUrl}
+                src={data.imgURL}
                 alt=""
                 className="aspect-square rounded-lg object-cover duration-300"
               />

@@ -1,8 +1,8 @@
 import ProductCard from "@/components/ui/ProductCard";
-import { Product } from "@/utilities/types";
+import { DBCar } from "@/utilities/car";
 
 type ProductListProps = {
-  items: Product[];
+  items: DBCar[];
 };
 
 const ProductList: React.FC<ProductListProps> = ({ items }) => {
