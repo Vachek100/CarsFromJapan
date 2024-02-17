@@ -39,7 +39,9 @@ const ProfileButton = () => {
         <DropdownMenuItem className="cursor-pointer">
           <Link to="/profile">Profile</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+          <Link to="/billing">Billing</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
           <Link to="/favorites">Favorites</Link>
         </DropdownMenuItem>
