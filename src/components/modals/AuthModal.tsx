@@ -6,7 +6,6 @@ import SignUpModal from "./SignUpModal";
 import ResetPasswordModal from "./ResetPasswordModal";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
-
 import Logout from "../Logout";
 
 type AuthModalProps = {};

@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/firebase";
 
 dayjs.extend(LocalizedFormat);
 
@@ -16,6 +18,7 @@ type ProductCard = {
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [user] = useAuthState(auth);
 
   const handleAddToFavorites = () => {
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
@@ -35,13 +38,21 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     });
   };
 
+  const handleLoginMessage = () => {
+    const toastMessage = "You must log in first.";
+
+    toast.info(toastMessage, {
+      description: `${dayjs().format("L LT")}`,
+    });
+  };
+
   return (
     <div className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2">
       <Card className="relative cursor-pointer rounded-lg border-2">
         <CardContent className="pt-4">
           <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
             <button
-              onClick={handleAddToFavorites}
+              onClick={user ? handleAddToFavorites : handleLoginMessage}
               className="group absolute right-1 top-1 rounded-full bg-white p-[.375rem]"
             >
               <HeartIcon
