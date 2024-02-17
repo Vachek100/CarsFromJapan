@@ -64,7 +64,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
             <Link to={data.route}>
               <img
                 src={data.imgURL}
-                alt=""
+                alt={`${data.name} image`}
                 className="aspect-square rounded-lg object-cover duration-300"
               />
             </Link>
