@@ -22,9 +22,9 @@ const ProfileButton = () => {
       <DropdownMenuTrigger>
         <Avatar className=" border-2 border-solid border-white transition-colors hover:border-pink-500">
           {user ? (
-            <AvatarImage src={Zoropfp} />
+            <AvatarImage alt="usersProfilePicture" src={Zoropfp} />
           ) : (
-            <AvatarImage src={Questpfp} />
+            <AvatarImage alt="questsProfilePicture" src={Questpfp} />
           )}
           {user ? (
             <AvatarFallback>VK</AvatarFallback>
