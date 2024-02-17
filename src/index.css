@@ -71,7 +71,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#f3f4f6] text-foreground;
   }
   /* Always show the scrollbar */
 html {
