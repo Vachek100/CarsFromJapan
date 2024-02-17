@@ -19,20 +19,38 @@ const SortBy: React.FC<Props> = ({ onSort }) => {
 
   return (
     <div className="flex items-center gap-2">
-      <Label className="text-lg" htmlFor="sort">Sort By:</Label>
+      <Label className="text-lg" htmlFor="sort">
+        Sort By:
+      </Label>
       <Select name="sort" onValueChange={handleSortChange}>
-        <SelectTrigger className="w-[180px] text-md">
+        <SelectTrigger className="text-md w-[180px]">
           <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem className="text-md" value="select">Select</SelectItem>
-          <SelectItem className="text-md" value="name">Name</SelectItem>
-          <SelectItem className="text-md" value="price_up">Price (Low to High)</SelectItem>
-          <SelectItem className="text-md" value="price_down">Price (High to Low)</SelectItem>
-          <SelectItem className="text-md" value="age_up">Age (Oldest First)</SelectItem>
-          <SelectItem className="text-md" value="age_down">Age (Newest First)</SelectItem>
-          <SelectItem className="text-md" value="km_up">Kilometers (Low to High)</SelectItem>
-          <SelectItem className="text-md" value="km_down">Kilometers (High to Low)</SelectItem>
+          <SelectItem className="text-md" value="select">
+            Select
+          </SelectItem>
+          <SelectItem className="text-md" value="name">
+            Name
+          </SelectItem>
+          <SelectItem className="text-md" value="price_up">
+            Price (Low to High)
+          </SelectItem>
+          <SelectItem className="text-md" value="price_down">
+            Price (High to Low)
+          </SelectItem>
+          <SelectItem className="text-md" value="age_up">
+            Age (Oldest First)
+          </SelectItem>
+          <SelectItem className="text-md" value="age_down">
+            Age (Newest First)
+          </SelectItem>
+          <SelectItem className="text-md" value="km_up">
+            Kilometers (Low to High)
+          </SelectItem>
+          <SelectItem className="text-md" value="km_down">
+            Kilometers (High to Low)
+          </SelectItem>
         </SelectContent>
       </Select>
     </div>
