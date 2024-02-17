@@ -48,15 +48,15 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
   return (
     <div className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2">
-      <Card className="relative cursor-pointer rounded-lg border-2">
+      <Card className="relative cursor-pointer rounded-md border-2">
         <CardContent className="pt-4">
-          <div className="relative aspect-square rounded-lg bg-foreground/5 dark:bg-background">
+          <div className="relative aspect-square rounded-md bg-foreground/5 dark:bg-background">
             <button
               onClick={user ? handleAddToFavorites : handleLoginMessage}
-              className="group absolute right-1 top-1 rounded-full bg-white p-[.375rem]"
+              className="group absolute right-1 top-1 rounded-md  bg-white p-[.375rem]"
             >
               <HeartIcon
-                className={`h-7 w-7 ${
+                className={`h-7 w-7 group-hover:text-pink-500 ${
                   isFavorite ? "text-pink-500" : "text-gray-400"
                 }`}
               />
@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
               <img
                 src={data.imgURL}
                 alt={`${data.name} image`}
-                className="aspect-square rounded-lg object-cover duration-300"
+                className="aspect-square rounded-md object-cover duration-300"
               />
             </Link>
           </div>
@@ -73,7 +73,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         <CardFooter className="my-auto flex-col items-start justify-between p-6 pt-0">
           <div>
             <Link to={data.route}>
-              <p className="py-1 pb-3 text-xl font-semibold hover:text-pink-600">
+              <p className="py-1 pb-3 text-xl font-semibold hover:text-[#e95759]">
                 {data.name}
               </p>
             </Link>

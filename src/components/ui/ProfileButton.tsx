@@ -20,7 +20,7 @@ const ProfileButton = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar className=" border-2 border-solid border-white transition-colors hover:border-pink-500">
+        <Avatar className=" border-2 border-solid border-white transition-colors hover:border-[#6acef5]">
           {user ? (
             <AvatarImage alt="usersProfilePicture" src={Zoropfp} />
           ) : (

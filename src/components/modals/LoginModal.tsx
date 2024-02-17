@@ -97,7 +97,7 @@ const LoginModal: React.FC<LoginProps> = () => {
   return (
     <form onSubmit={handleLogin}>
       <Card className="w-[350px]">
-        <CardHeader className="rounded-t-xl bg-[#48a2d7] text-center">
+        <CardHeader className="rounded-t-md bg-[#0b305e] text-center">
           <CardTitle className="text-2xl text-white">Log In</CardTitle>
           <CardDescription className="text-white">
             To access your profile
@@ -133,19 +133,19 @@ const LoginModal: React.FC<LoginProps> = () => {
         </CardContent>
         <p
           onClick={() => handleClick("forgotPassword")}
-          className="cursor-pointer px-6 text-sm text-pink-500 hover:text-pink-700"
+          className="cursor-pointer px-6 text-sm text-[#e95759] hover:text-[#b54345]"
         >
           Forgot password?
         </p>
         <CardFooter className="flex flex-col justify-center gap-3 py-6">
-          <Button className="w-full bg-[#48a2d7] hover:bg-[#367ba3]">
+          <Button className="w-full bg-[#0b305e] hover:bg-[#1357aa]">
             {loading ? <Loader /> : "Log In"}
           </Button>
           <p>
             Don't have an account yet?{" "}
             <span
               onClick={() => handleClick("register")}
-              className="cursor-pointer text-pink-500 hover:text-pink-700"
+              className="cursor-pointer text-[#e95759] hover:text-[#b54345]"
             >
               Sign Up
             </span>

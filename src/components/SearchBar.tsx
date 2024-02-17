@@ -27,14 +27,14 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
         Search:
       </Label>
       <Input
-        className="text-md"
+        className="text-md bg-white"
         id="search"
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
       />
       <Button
-        className="bg-pink-500 hover:bg-pink-700"
+        className="bg-[#e95759] hover:bg-[#b54345]"
         onClick={handleSearchClick}
       >
         <MagnifyingGlassIcon className="h-5 w-5" />

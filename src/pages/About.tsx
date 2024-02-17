@@ -3,9 +3,11 @@ import Container from "@/components/ui/container";
 const About = () => {
   return (
     <>
-      <Container>
-        <h1 className="mt-12">About</h1>
-      </Container>
+      <div className="h-auto w-full bg-white py-7 shadow-md">
+        <Container>
+          <h1 className="text-[30px] font-bold">About</h1>
+        </Container>
+      </div>
     </>
   );
 };

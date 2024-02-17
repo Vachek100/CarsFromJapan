@@ -55,7 +55,7 @@ const ResetPasswordModal = () => {
   return (
     <form onSubmit={handleReset}>
       <Card className="w-[350px]">
-        <CardHeader className="rounded-t-xl bg-[#48a2d7] text-center">
+        <CardHeader className="rounded-t-md bg-[#0b305e] text-center">
           <CardTitle className="text-2xl text-white">Reset Password</CardTitle>
           <CardDescription className="text-white">
             Forgotten your password? Enter your e-mail address below, and we'll
@@ -80,7 +80,7 @@ const ResetPasswordModal = () => {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col justify-center gap-3 py-6">
-          <Button className="w-full bg-[#48a2d7] hover:bg-[#367ba3]">
+          <Button className="w-full bg-[#0b305e] hover:bg-[#1357aa]">
             {sending ? <Loader /> : "Reset Password"}
           </Button>
         </CardFooter>

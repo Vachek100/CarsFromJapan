@@ -23,7 +23,7 @@ const SortBy: React.FC<Props> = ({ onSort }) => {
         Sort By:
       </Label>
       <Select name="sort" onValueChange={handleSortChange}>
-        <SelectTrigger className="text-md w-[180px]">
+        <SelectTrigger className="text-md bg-white w-[180px]">
           <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>

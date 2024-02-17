@@ -34,6 +34,11 @@ const Home = () => {
   };
   return (
     <>
+      <div className="h-auto w-full bg-white py-7 shadow-md">
+        <Container>
+          <h1 className="text-[30px] font-bold">Home</h1>
+        </Container>
+      </div>
       <Container>
         <h1 className="mt-12">Home</h1>
         {/* temp form */}

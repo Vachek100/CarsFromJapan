@@ -5,6 +5,11 @@ import ProfileButton from "./ui/ProfileButton";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { Link, Outlet } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 
 const routes = [
   {
@@ -25,11 +30,12 @@ const routes = [
 ];
 
 const Navbar = () => {
-  const navButtonsStyles = "text-white font-bold text-base ";
+  const navLinksStyle =
+    "text-white text-lg px-3 py-2 rounded-md font-medium transition-colors hover:text-[#6acef5]";
 
   return (
     <>
-      <nav className="bg-[#48a2d7] shadow-xl">
+      <nav className="bg-[#0b305e] shadow-xl">
         <Container>
           <div className="relative flex items-center justify-between px-3 py-5 md:pl-28">
             <img
@@ -66,16 +72,25 @@ const Navbar = () => {
                   </nav>
                 </SheetContent>
               </Sheet>
-              {routes.map((route, i) => (
-                <Button
-                  variant="ghost"
-                  className="hidden rounded-full px-5 py-3 hover:bg-pink-500 md:flex"
-                >
-                  <Link key={i} to={route.path} className={navButtonsStyles}>
-                    {route.name}
-                  </Link>
-                </Button>
-              ))}
+              <NavigationMenu>
+                <NavigationMenuList className="space-x-4">
+                  <NavigationMenuItem>
+                    <Link className={navLinksStyle} to="/">
+                      Home
+                    </Link>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <Link className={navLinksStyle} to="/store">
+                      Store
+                    </Link>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <Link className={navLinksStyle} to="/about">
+                      About
+                    </Link>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
             </div>
             <div className="flex items-center gap-5">
               <ProfileButton />

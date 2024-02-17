@@ -18,7 +18,6 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import Loader from "@/components/Loader";
 import { authModalState } from "@/atoms/authModalAtom";
 import { useSetRecoilState } from "recoil";
-import { XMarkIcon } from "@heroicons/react/20/solid";
 
 dayjs.extend(LocalizedFormat);
 
@@ -133,7 +132,7 @@ const SignUpModal: React.FC<SignUpProps> = () => {
   return (
     <form onSubmit={handleRegister}>
       <Card className="w-[350px]">
-        <CardHeader className="rounded-t-xl bg-[#48a2d7] text-center">
+        <CardHeader className="rounded-t-md bg-[#0b305e] text-center">
           <CardTitle className="text-2xl text-white">Sign Up</CardTitle>
           <CardDescription className="text-white">
             To unlock additional cool stuff
@@ -190,7 +189,7 @@ const SignUpModal: React.FC<SignUpProps> = () => {
         <CardFooter className="flex flex-col justify-center gap-3">
           <Button
             type="submit"
-            className="w-full bg-[#48a2d7] hover:bg-[#367ba3]"
+            className="w-full bg-[#0b305e] hover:bg-[#1357aa]"
           >
             {loading ? <Loader /> : "Sign Up"}
           </Button>
@@ -198,7 +197,7 @@ const SignUpModal: React.FC<SignUpProps> = () => {
             Already have an account?{" "}
             <span
               onClick={handleClick}
-              className="cursor-pointer text-pink-500 hover:text-pink-700"
+              className="cursor-pointer text-[#e95759] hover:text-[#b54345]"
             >
               Log in
             </span>
@@ -210,4 +209,3 @@ const SignUpModal: React.FC<SignUpProps> = () => {
 };
 
 export default SignUpModal;
-
