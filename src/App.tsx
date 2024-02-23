@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth } from "@/firebase/firebase";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
 import Store from "@/pages/Store";
 import About from "@/pages/About";
