@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { auth } from "@/firebase/firebase";
 import { Routes, Route } from "react-router-dom";
-import Home from "@/pages/Home";
-import Store from "@/pages/Store";
-import About from "@/pages/About";
-import Favorites from "./pages/Favorites";
-import Profile from "./pages/Profile";
+import HomePage from "@/pages/HomePage";
+import StorePage from "@/pages/StorePage";
+import AboutPage from "@/pages/AboutPage";
+import FavoritesPage from "./pages/FavoritesPage";
+import Profile from "./components/Profile";
 import { Toaster } from "@/components/ui/sonner";
 import ProtectedRoute from "./routeProtection/ProtectedRoute";
 import PageNotFound from "./pages/PageNotFound";
+import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
+import Account from "./components/Account";
 
 function App() {
   const [firebaseInitialized, setFirebaseInitialized] = useState(false);
@@ -34,12 +36,15 @@ function App() {
               </>
             }
           >
-            <Route path="/" element={<Home />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/store" element={<StorePage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route element={<ProtectedRoute />}>
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/profile" element={<ProfilePage />}>
+                <Route index element={<Profile />} />
+                <Route path="account" element={<Account />} />
+              </Route>
+              <Route path="favorites" element={<FavoritesPage />} />
             </Route>
           </Route>
           <Route path="/*" element={<PageNotFound />} />
