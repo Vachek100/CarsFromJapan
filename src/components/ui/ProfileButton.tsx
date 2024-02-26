@@ -9,7 +9,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Zoropfp from "@/assets/images/zoropfp.jpg";
 import Questpfp from "@/assets/images/questpfp.jpg";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AuthModal from "../modals/AuthModal";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
@@ -37,13 +37,15 @@ const ProfileButton = () => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer">
-          <Link to="/profile">Profile</Link>
+          <NavLink end to="/profile">
+            Profile
+          </NavLink>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
-          <Link to="/billing">Billing</Link>
+          <NavLink to="/billing">Billing</NavLink>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
-          <Link to="/favorites">Favorites</Link>
+          <NavLink to="/favorites">Favorites</NavLink>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <p className="cursor-pointer rounded-sm px-2 py-1.5 text-sm hover:bg-[#f1f5f9]">
