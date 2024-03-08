@@ -8,15 +8,16 @@ import {
 const ComputerNav = () => {
   const navLinksStyle =
     "text-white text-lg px-3 py-2 rounded-md font-medium transition-colors hover:text-[#6acef5]";
+    const linkStyle = ({ isActive }: { isActive: boolean }) => {
+      return isActive ? { color: "#6acef5" } : {};
+    };
   return (
     <div className="flex items-center gap-2 ">
       <NavigationMenu className="hidden md:flex">
         <NavigationMenuList className="space-x-4">
           <NavigationMenuItem>
             <NavLink
-              style={({ isActive }) => {
-                return isActive ? { color: "#6acef5" } : {};
-              }}
+              style={linkStyle}
               className={navLinksStyle}
               to="/"
             >
@@ -25,9 +26,7 @@ const ComputerNav = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavLink
-              style={({ isActive }) => {
-                return isActive ? { color: "#6acef5" } : {};
-              }}
+              style={linkStyle}
               className={navLinksStyle}
               to="/store"
             >
@@ -36,9 +35,7 @@ const ComputerNav = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavLink
-              style={({ isActive }) => {
-                return isActive ? { color: "#6acef5" } : {};
-              }}
+              style={linkStyle}
               className={navLinksStyle}
               to="/about"
             >
