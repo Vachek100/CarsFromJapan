@@ -92,6 +92,14 @@ const handleLoginErrorMessage = () => {
   });
 };
 
+const handleLogoutMessage = () => {
+  const toastMessage = "You have been successfully logged out.";
+
+  toast.success(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
 export {
   handleAccountSuccessfulCreation,
   handleEmailAlreadyInUseMessage,
@@ -104,4 +112,5 @@ export {
   handleLoginErrorMessage,
   handleDuringLoginErrorMessage,
   handleDuringSignUpErrorMessage,
+  handleLogoutMessage,
 };

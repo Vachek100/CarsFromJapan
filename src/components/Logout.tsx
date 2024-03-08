@@ -1,17 +1,7 @@
 import { auth } from "@/firebase/firebase";
 import { useSignOut } from "react-firebase-hooks/auth";
 import Loader from "./Loader";
-import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
-import { toast } from "sonner";
-dayjs.extend(LocalizedFormat);
-const handleLogoutMessage = () => {
-  const toastMessage = "You have been successfully logged out.";
-
-  toast.success(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
+import { handleLogoutMessage } from "@/toasts/toastMessages";
 
 const Logout = () => {
   const [signOut, loading] = useSignOut(auth);
