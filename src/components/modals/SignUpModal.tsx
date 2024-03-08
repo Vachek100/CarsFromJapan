@@ -10,64 +10,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
-import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
-import { auth } from "@/firebase/firebase";
+import { auth, firestore } from "@/firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import Loader from "@/components/Loader";
 import { authModalState } from "@/atoms/authModalAtom";
 import { useSetRecoilState } from "recoil";
-
-dayjs.extend(LocalizedFormat);
-
-const handleAccountSuccessfulCreation = () => {
-  const toastMessage = "Account has been created.";
-
-  toast.success(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handleErrorMessage = () => {
-  const toastMessage = "Error during signup";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handlePasswordLengthMessage = () => {
-  const toastMessage = "Password should be at least 6 characters long.";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handlePasswordMatchMessage = () => {
-  const toastMessage = "Passwords do not match.";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handleEmailAlreadyInUseMessage = () => {
-  const toastMessage = "Email already in use.";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handleEmptyFieldErrorMessage = () => {
-  const toastMessage = "Please fill all fields.";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
+import { doc, setDoc } from "firebase/firestore";
+import {
+  handleAccountSuccessfulCreation,
+  handleEmailAlreadyInUseMessage,
+  handleEmptyFieldErrorMessage,
+  handlePasswordLengthMessage,
+  handlePasswordMatchMessage,
+  handleDuringSignUpErrorMessage,
+} from "@/toasts/toastMessages";
 
 type SignUpProps = {};
 
@@ -116,12 +72,26 @@ const SignUpModal: React.FC<SignUpProps> = () => {
         inputs.email,
         inputs.password,
       );
+      if (!newUser) return;
+
+      const userData = {
+        uid: newUser.user.uid,
+        displayName: inputs.displayName,
+        email: newUser.user.email,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        likedCars: [],
+        publishedCars: [],
+        profilePicture: "",
+      };
+
+      await setDoc(doc(firestore, "users", newUser.user.uid), userData);
 
       if (newUser) {
         handleAccountSuccessfulCreation();
       }
     } catch (error: any) {
-      handleErrorMessage();
+      handleDuringSignUpErrorMessage();
     }
   };
 

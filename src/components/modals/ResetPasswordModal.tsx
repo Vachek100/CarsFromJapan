@@ -13,25 +13,10 @@ import { Button } from "../ui/button";
 import Loader from "../Loader";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
-import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
-import { toast } from "sonner";
-dayjs.extend(LocalizedFormat);
-const handleSentEmailMessage = () => {
-  const toastMessage = "Sent Email";
-
-  toast.success(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handleResetErrorMessage = () => {
-  const toastMessage = "User with this email not found.";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
+import {
+  handleResetErrorMessage,
+  handleSentEmailMessage,
+} from "@/toasts/toastMessages";
 
 const ResetPasswordModal = () => {
   const [email, setEmail] = useState("");

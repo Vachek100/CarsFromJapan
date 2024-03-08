@@ -10,51 +10,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { auth } from "@/firebase/firebase";
-import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "@/atoms/authModalAtom";
-
-import { toast } from "sonner";
 import Loader from "../Loader";
-
-dayjs.extend(LocalizedFormat);
+import {
+  handleEmptyFieldErrorMessage,
+  handleDuringLoginErrorMessage,
+  handleLoginErrorMessage,
+  handleSuccessfulLoginMessage,
+} from "@/toasts/toastMessages";
 
 type LoginProps = {};
-
-const handleEmptyFieldErrorMessage = () => {
-  const toastMessage = "Please fill all fields.";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handleErrorMessage = () => {
-  const toastMessage = "Error during login";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handleSuccessfulLoginMessage = () => {
-  const toastMessage = "You have successfully logged in.";
-
-  toast.success(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
-
-const handleLoginErrorMessage = () => {
-  const toastMessage = "Wrong email or password. Try again.";
-
-  toast.error(toastMessage, {
-    description: `${dayjs().format("L LT")}`,
-  });
-};
 
 const LoginModal: React.FC<LoginProps> = () => {
   const setAuthModalState = useSetRecoilState(authModalState);
@@ -86,7 +54,7 @@ const LoginModal: React.FC<LoginProps> = () => {
       if (!newUser) return;
       handleSuccessfulLoginMessage();
     } catch (error: any) {
-      handleErrorMessage();
+      handleDuringLoginErrorMessage();
     }
   };
 
