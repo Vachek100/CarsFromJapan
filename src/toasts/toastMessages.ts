@@ -100,6 +100,16 @@ const handleLogoutMessage = () => {
   });
 };
 
+ const handleLoginMessage = () => {
+   const toastMessage = "You must log in first.";
+
+   toast.info(toastMessage, {
+     description: `${dayjs().format("L LT")}`,
+   });
+ };
+
+ 
+
 export {
   handleAccountSuccessfulCreation,
   handleEmailAlreadyInUseMessage,
@@ -113,4 +123,5 @@ export {
   handleDuringLoginErrorMessage,
   handleDuringSignUpErrorMessage,
   handleLogoutMessage,
+  handleLoginMessage,
 };
