@@ -6,44 +6,83 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/firebase";
+import { auth, firestore } from "@/firebase/firebase";
+import { handleLoginMessage } from "@/toasts/toastMessages";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 dayjs.extend(LocalizedFormat);
 
 type ProductCard = {
-  data: DBCar;
+  car: DBCar;
 };
 
-const ProductCard: React.FC<ProductCard> = ({ data }) => {
+const ProductCard: React.FC<ProductCard> = ({ car }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [user] = useAuthState(auth);
 
-  const handleAddToFavorites = () => {
-    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+  useEffect(() => {
+    const checkFavorite = async () => {
+      if (user) {
+        const userRef = doc(firestore, "users", user.uid);
+        const docSnap = await getDoc(userRef);
 
-    const toastMessage = isFavorite
-      ? `${data.name} has been removed from favorites`
-      : `${data.name} has been added to favorites`;
+        if (docSnap.exists()) {
+          const likedCars = docSnap.data().likedCars || [];
+          setIsFavorite(likedCars.includes(car.id));
+        }
+      } else {
+        setIsFavorite(false);
+      }
+    };
 
-    toast(toastMessage, {
-      description: `${dayjs().format("L LT")}`,
-      action: {
-        label: "Undo",
-        onClick: () => {
-          setIsFavorite((prevIsFavorite) => !prevIsFavorite);
-        },
-      },
-    });
-  };
+    checkFavorite();
+  }, [user, car.id]);
 
-  const handleLoginMessage = () => {
-    const toastMessage = "You must log in first.";
+  const handleAddToFavorites = async () => {
+    if (!user) {
+      handleLoginMessage();
+      return;
+    }
 
-    toast.info(toastMessage, {
-      description: `${dayjs().format("L LT")}`,
-    });
+    const userRef = doc(firestore, "users", user.uid);
+    const docSnap = await getDoc(userRef);
+
+    if (!docSnap.exists()) {
+      console.log("No such document!");
+    } else {
+      let likedCars = docSnap.data().likedCars || [];
+      if (likedCars.includes(car.id)) {
+        likedCars = likedCars.filter((id: string) => id !== car.id);
+        toast(`${car.name} has been removed from favorites`, {
+          description: `${dayjs().format("L LT")}`,
+          action: {
+            label: "Undo",
+            onClick: () => {
+              setIsFavorite(true);
+              updateDoc(userRef, { likedCars: [...likedCars, car.id] });
+            },
+          },
+        });
+      } else {
+        likedCars.push(car.id);
+        toast(`${car.name} has been added to favorites`, {
+          description: `${dayjs().format("L LT")}`,
+          action: {
+            label: "Undo",
+            onClick: () => {
+              setIsFavorite(false);
+              updateDoc(userRef, {
+                likedCars: likedCars.filter((id: string) => id !== car.id),
+              });
+            },
+          },
+        });
+      }
+      setIsFavorite(likedCars.includes(car.id));
+      updateDoc(userRef, { likedCars });
+    }
   };
 
   return (
@@ -61,10 +100,10 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                 }`}
               />
             </button>
-            <Link to={data.route}>
+            <Link to={car.route}>
               <img
-                src={data.imgURL}
-                alt={`${data.name} image`}
+                src={car.imgURL}
+                alt={`${car.name} image`}
                 className="aspect-square rounded-md object-cover duration-300"
               />
             </Link>
@@ -72,25 +111,25 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         </CardContent>
         <CardFooter className="my-auto flex-col items-start justify-between p-6 pt-0">
           <div>
-            <Link to={data.route}>
+            <Link to={car.route}>
               <p className="py-1 pb-3 text-xl font-semibold hover:text-[#e95759]">
-                {data.name}
+                {car.name}
               </p>
             </Link>
 
-            <p className="py-1 text-sm text-primary/80">km: {data.km}</p>
-            <p className="py-1 text-sm text-primary/80">year: {data.year}</p>
+            <p className="py-1 text-sm text-primary/80">km: {car.km}</p>
+            <p className="py-1 text-sm text-primary/80">year: {car.year}</p>
             <p className="py-1 text-sm text-primary/80">
-              engine: {data.engine}
+              engine: {car.engine}
               <span>cc</span>
             </p>
             <p className="py-1 text-sm text-primary/80">
-              Grade: <span className="font-bold">{data.grade}</span>
+              Grade: <span className="font-bold">{car.grade}</span>
             </p>
           </div>
           <div className="flex w-full justify-between text-lg">
             <span className="font-semibold">Car Price:</span>{" "}
-            {formatCurrency(data?.price)}
+            {formatCurrency(car?.price)}
           </div>
         </CardFooter>
       </Card>
