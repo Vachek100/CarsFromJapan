@@ -87,7 +87,7 @@ const ProductList: React.FC<Props> = ({ sortBy, searchQuery }) => {
   return (
     <div className="grid grid-cols-1 gap-4 small:grid-cols-2 medium:grid-cols-3 xl:grid-cols-4">
       {filteredCars.map((car) => (
-        <ProductCard key={car.id} data={car} />
+        <ProductCard key={car.id} car={car} />
       ))}
     </div>
   );
