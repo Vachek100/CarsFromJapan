@@ -22,24 +22,6 @@ const ProductCard: React.FC<ProductCard> = ({ car }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [user] = useAuthState(auth);
 
-  useEffect(() => {
-    const checkFavorite = async () => {
-      if (user) {
-        const userRef = doc(firestore, "users", user.uid);
-        const docSnap = await getDoc(userRef);
-
-        if (docSnap.exists()) {
-          const likedCars = docSnap.data().likedCars || [];
-          setIsFavorite(likedCars.includes(car.id));
-        }
-      } else {
-        setIsFavorite(false);
-      }
-    };
-
-    checkFavorite();
-  }, [user, car.id]);
-
   const handleAddToFavorites = async () => {
     if (!user) {
       handleLoginMessage();
@@ -53,20 +35,24 @@ const ProductCard: React.FC<ProductCard> = ({ car }) => {
       console.log("No such document!");
     } else {
       let likedCars = docSnap.data().likedCars || [];
-      if (likedCars.includes(car.id)) {
-        likedCars = likedCars.filter((id: string) => id !== car.id);
+      const existingCarIndex = likedCars.findIndex(
+        (likedCar: DBCar) => likedCar.id === car.id,
+      );
+
+      if (existingCarIndex !== -1) {
+        likedCars.splice(existingCarIndex, 1);
         toast(`${car.name} has been removed from favorites`, {
           description: `${dayjs().format("L LT")}`,
           action: {
             label: "Undo",
             onClick: () => {
               setIsFavorite(true);
-              updateDoc(userRef, { likedCars: [...likedCars, car.id] });
+              updateDoc(userRef, { likedCars: [...likedCars, car] });
             },
           },
         });
       } else {
-        likedCars.push(car.id);
+        likedCars.push(car);
         toast(`${car.name} has been added to favorites`, {
           description: `${dayjs().format("L LT")}`,
           action: {
@@ -74,16 +60,40 @@ const ProductCard: React.FC<ProductCard> = ({ car }) => {
             onClick: () => {
               setIsFavorite(false);
               updateDoc(userRef, {
-                likedCars: likedCars.filter((id: string) => id !== car.id),
+                likedCars: likedCars.filter(
+                  (likedCar: DBCar) => likedCar.id !== car.id,
+                ),
               });
             },
           },
         });
       }
-      setIsFavorite(likedCars.includes(car.id));
+      setIsFavorite(
+        likedCars.some((likedCar: DBCar) => likedCar.id === car.id),
+      );
       updateDoc(userRef, { likedCars });
     }
   };
+
+  useEffect(() => {
+    const checkFavorite = async () => {
+      if (user) {
+        const userRef = doc(firestore, "users", user.uid);
+        const docSnap = await getDoc(userRef);
+
+        if (docSnap.exists()) {
+          const likedCars = docSnap.data().likedCars || [];
+          setIsFavorite(
+            likedCars.some((likedCar: DBCar) => likedCar.id === car.id),
+          );
+        }
+      } else {
+        setIsFavorite(false);
+      }
+    };
+
+    checkFavorite();
+  }, [user, car.id]);
 
   return (
     <div className="rounded-lg outline-0 ring-primary transition duration-300 hover:ring-2 focus:ring-2">
