@@ -34,7 +34,7 @@ const ProductCard: React.FC<ProductCard> = ({ car }) => {
     if (!docSnap.exists()) {
       console.log("No such document!");
     } else {
-      let likedCars = docSnap.data().likedCars || [];
+      const likedCars = docSnap.data().likedCars || [];
       const existingCarIndex = likedCars.findIndex(
         (likedCar: DBCar) => likedCar.id === car.id,
       );
