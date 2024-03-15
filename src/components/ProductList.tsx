@@ -65,7 +65,6 @@ const ProductList: React.FC<Props> = ({ sortBy, searchQuery }) => {
   }, [sortBy]);
 
   useEffect(() => {
-    // Apply search filter if searchQuery is not empty
     if (searchQuery) {
       const filtered = sortedCars.filter((car) =>
         car.name.toLowerCase().includes(searchQuery.toLowerCase()),
