@@ -10,7 +10,7 @@ const Favorites = () => {
         </Container>
       </div>
       <Container>
-        <div className="mb-4 mt-12 text-xl font-bold">Favorites</div>
+        <div className="mt-12"></div>
         <FavoritesList />
       </Container>
     </>
