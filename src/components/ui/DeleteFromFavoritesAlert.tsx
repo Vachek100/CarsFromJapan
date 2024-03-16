@@ -71,7 +71,7 @@ const DeleteFromFavoritesAlert: React.FC<DeleteFavoriteProductCard> = ({
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will delete your favorite car from your favorites.
+              This will delete your favorite car from your favorites list.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
