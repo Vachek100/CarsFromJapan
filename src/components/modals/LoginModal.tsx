@@ -106,7 +106,7 @@ const LoginModal: React.FC<LoginProps> = () => {
           Forgot password?
         </p>
         <CardFooter className="flex flex-col justify-center gap-3 py-6">
-          <Button className="w-full bg-[#0b305e] hover:bg-[#1357aa]">
+          <Button className="w-full bg-[#0b305e] hover:bg-[#1357aa]" disabled={loading}>
             {loading ? <Loader /> : "Log In"}
           </Button>
           <p>
