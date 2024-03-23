@@ -3,10 +3,11 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { NavLink } from "react-router-dom";
 import AuthModal from "./modals/AuthModal";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/firebase";
-import Zoropfp from "@/assets/images/zoropfp.jpg";
+import { auth, firestore } from "@/firebase/firebase";
 import Questpfp from "@/assets/images/questpfp.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
 
 const routes = [
   {
@@ -28,6 +29,24 @@ const routes = [
 
 const MobileNav = () => {
   const [user] = useAuthState(auth);
+  const [profilePicture, setProfilePicture] = useState("");
+  const [displayName, setDisplayName] = useState("");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(firestore, "users", user.uid));
+        if (userDoc.exists()) {
+          setDisplayName(userDoc.data().displayName || "");
+          setProfilePicture(userDoc.data().profilePicture || "");
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <Sheet>
       <SheetTrigger>
@@ -53,14 +72,16 @@ const MobileNav = () => {
           <div className=" flex h-fit gap-5">
             <Avatar className="h-14 w-14 border-2 border-solid border-white">
               {user ? (
-                <AvatarImage alt="usersProfilePicture" src={Zoropfp} />
+                <AvatarImage alt="usersProfilePicture" src={profilePicture} />
               ) : (
                 <AvatarImage alt="questsProfilePicture" src={Questpfp} />
               )}
               {user ? (
-                <AvatarFallback>VK</AvatarFallback>
+                <AvatarFallback className="text-xs">
+                  {displayName}
+                </AvatarFallback>
               ) : (
-                <AvatarFallback>QU</AvatarFallback>
+                <AvatarFallback className="text-xs">Quest</AvatarFallback>
               )}
             </Avatar>
             <div className="flex flex-col py-1.5">
