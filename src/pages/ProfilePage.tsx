@@ -14,9 +14,11 @@ const Profile = () => {
       <Container>
         <div className=" mt-10 rounded-md bg-white p-8 shadow-lg">
           <ProfileSettingsHeader />
-          <div className="flex gap-2">
+          <div className="flex gap-20">
             <Aside />
-            <Outlet />
+            <div>
+              <Outlet />
+            </div>
           </div>
         </div>
       </Container>
