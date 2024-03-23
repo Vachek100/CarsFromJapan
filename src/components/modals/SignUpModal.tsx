@@ -24,6 +24,7 @@ import {
   handlePasswordMatchMessage,
   handleDuringSignUpErrorMessage,
 } from "@/toasts/toastMessages";
+import { getStorage, ref, uploadString } from "firebase/storage";
 
 type SignUpProps = {};
 
@@ -83,6 +84,7 @@ const SignUpModal: React.FC<SignUpProps> = () => {
         likedCars: [],
         publishedCars: [],
         profilePicture: "",
+        bio: "",
       };
 
       await setDoc(doc(firestore, "users", newUser.user.uid), userData);
@@ -160,6 +162,7 @@ const SignUpModal: React.FC<SignUpProps> = () => {
           <Button
             type="submit"
             className="w-full bg-[#0b305e] hover:bg-[#1357aa]"
+            disabled={loading}
           >
             {loading ? <Loader /> : "Sign Up"}
           </Button>
