@@ -22,7 +22,7 @@ const Aside = () => {
         className={asideLinkStyle}
         to="/profile/account"
       >
-        Account
+        Security and privacy
       </NavLink>
       <NavLink
         style={({ isActive }) => {
