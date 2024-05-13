@@ -100,15 +100,45 @@ const handleLogoutMessage = () => {
   });
 };
 
- const handleLoginMessage = () => {
-   const toastMessage = "You must log in first.";
+const handleLoginMessage = () => {
+  const toastMessage = "You must log in first.";
 
-   toast.info(toastMessage, {
-     description: `${dayjs().format("L LT")}`,
-   });
- };
+  toast.info(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
 
- 
+const successfullVerifyMessage = () => {
+  const toastMessage = "Your password has been verified.";
+
+  toast.success(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
+const errorVerifyMessage = () => {
+  const toastMessage = "Error during password verification. Try again.";
+
+  toast.error(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
+const successfulPasswordUpdateMessage = () => {
+  const toastMessage = "Your password has been successfully updated.";
+
+  toast.success(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
+
+const errorPasswordUpdateMessage = () => {
+  const toastMessage = "Error during password update. Try again.";
+
+  toast.error(toastMessage, {
+    description: `${dayjs().format("L LT")}`,
+  });
+};
 
 export {
   handleAccountSuccessfulCreation,
@@ -124,4 +154,8 @@ export {
   handleDuringSignUpErrorMessage,
   handleLogoutMessage,
   handleLoginMessage,
+  successfullVerifyMessage,
+  errorVerifyMessage,
+  successfulPasswordUpdateMessage,
+  errorPasswordUpdateMessage,
 };
