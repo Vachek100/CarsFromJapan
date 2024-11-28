@@ -102,8 +102,8 @@ const MobileNav = () => {
             <NavLink end to="/profile">
               Profile
             </NavLink>
-            <NavLink to="/billing">Billing</NavLink>
             <NavLink to="/favorites">Favorites</NavLink>
+            <NavLink to="/settings/profile">Settings</NavLink>
             <div
               className={`max-[mt-200px] bottom-0 flex text-lg hover:cursor-pointer ${
                 user ? "text-red-500" : "text-black"

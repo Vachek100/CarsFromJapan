@@ -25,6 +25,7 @@ import {
   handleDuringSignUpErrorMessage,
 } from "@/toasts/toastMessages";
 import { getStorage, ref, uploadString } from "firebase/storage";
+import { sendEmailVerification } from "firebase/auth";
 
 type SignUpProps = {};
 
@@ -85,9 +86,12 @@ const SignUpModal: React.FC<SignUpProps> = () => {
         publishedCars: [],
         profilePicture: "",
         bio: "",
+        phoneNumber: "",
       };
 
       await setDoc(doc(firestore, "users", newUser.user.uid), userData);
+
+      await sendEmailVerification(newUser.user);
 
       if (newUser) {
         handleAccountSuccessfulCreation();

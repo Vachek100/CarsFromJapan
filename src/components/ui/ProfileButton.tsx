@@ -55,15 +55,15 @@ const ProfileButton = () => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer">
-          <NavLink end to="/profile">
-            Profile
-          </NavLink>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
           <NavLink to="/billing">Billing</NavLink>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
           <NavLink to="/favorites">Favorites</NavLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+          <NavLink end to="/settings/profile">
+            Settings
+          </NavLink>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <p className="cursor-pointer rounded-sm px-2 py-1.5 text-sm hover:bg-[#f1f5f9]">

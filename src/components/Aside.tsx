@@ -2,50 +2,43 @@ import { NavLink } from "react-router-dom";
 
 const Aside = () => {
   const asideLinkStyle = "hover:underline underline-offset-4";
+  const buttonsActive = ({ isActive }) => {
+    return isActive ? { color: "#1b7df6" } : {};
+  };
 
   return (
     <div className="flex flex-col gap-2">
       <NavLink
-        style={({ isActive }) => {
-          return isActive ? { color: "#6acef5" } : {};
-        }}
+        style={buttonsActive}
         end
         className={asideLinkStyle}
-        to="/profile"
+        to="/settings/profile"
       >
         Profile
       </NavLink>
       <NavLink
-        style={({ isActive }) => {
-          return isActive ? { color: "#6acef5" } : {};
-        }}
+        style={buttonsActive}
         className={asideLinkStyle}
-        to="/profile/account"
+        to="/settings/security"
       >
         Security and privacy
       </NavLink>
       <NavLink
-        style={({ isActive }) => {
-          return isActive ? { color: "#6acef5" } : {};
-        }}
+        style={buttonsActive}
         className={asideLinkStyle}
-        to="/profile/appearance"
+        to="/settings/appearance"
       >
         Appearance
       </NavLink>
       <NavLink
-        style={({ isActive }) => {
-          return isActive ? { color: "#6acef5" } : {};
-        }}
+        style={buttonsActive}
         className={asideLinkStyle}
-        to="/profile/notifications"
+        to="/settings/notifications"
       >
         Notifications
       </NavLink>
       <NavLink
-        style={({ isActive }) => {
-          return isActive ? { color: "#6acef5" } : {};
-        }}
+        style={buttonsActive}
         className={asideLinkStyle}
         to="/profile/display"
       >
