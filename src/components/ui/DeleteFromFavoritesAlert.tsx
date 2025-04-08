@@ -15,10 +15,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { DBCar } from "@/utilities/car";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "sonner";
-import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
-
-dayjs.extend(LocalizedFormat);
+import * as dayjs from "dayjs";
 
 type DeleteFavoriteProductCard = {
   car: DBCar;
@@ -46,7 +43,7 @@ const DeleteFromFavoritesAlert: React.FC<DeleteFavoriteProductCard> = ({
         likedCars.splice(existingCarIndex, 1);
         await updateDoc(userRef, { likedCars: likedCars });
         toast(`${car.name} has been removed from favorites`, {
-          description: `${dayjs().format("L LT")}`,
+          
           action: {
             label: "Undo",
             onClick: async () => {

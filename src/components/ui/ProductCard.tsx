@@ -4,15 +4,12 @@ import formatCurrency from "@/utilities/formatCurrency";
 import { HeartIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
-import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
+import * as dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, firestore } from "@/firebase/firebase";
 import { handleLoginMessage } from "@/toasts/toastMessages";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-
-dayjs.extend(LocalizedFormat);
 
 type ProductCard = {
   car: DBCar;
@@ -42,7 +39,7 @@ const ProductCard: React.FC<ProductCard> = ({ car }) => {
       if (existingCarIndex !== -1) {
         likedCars.splice(existingCarIndex, 1);
         toast(`${car.name} has been removed from favorites`, {
-          description: `${dayjs().format("L LT")}`,
+          
           action: {
             label: "Undo",
             onClick: () => {
@@ -54,7 +51,7 @@ const ProductCard: React.FC<ProductCard> = ({ car }) => {
       } else {
         likedCars.push(car);
         toast(`${car.name} has been added to favorites`, {
-          description: `${dayjs().format("L LT")}`,
+          
           action: {
             label: "Undo",
             onClick: () => {
