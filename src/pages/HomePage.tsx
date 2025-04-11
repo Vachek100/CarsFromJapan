@@ -6,8 +6,44 @@ import { Badge } from "@/components/ui/badge"
 import { Car, Search, ShieldCheck, Ship, Banknote, ChevronRight } from "lucide-react"
 import Container from "@/components/ui/container";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { firestore } from '@/firebase/firebase';
 
 export default function Home() {
+    const [featuredCars, setFeaturedCars] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchFeaturedCars = async () => {
+            try {
+                // Get all cars from Firestore
+                const querySnapshot = await getDocs(collection(firestore, "cars"));
+                const allCars = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+
+                // Select 6 cars that will rotate daily
+                const today: any = new Date();
+                const dayOfYear = Math.floor(
+                    (today - new Date(today.getFullYear(), 0, 0)) / 86400000
+                );
+                const startIndex = dayOfYear % Math.max(1, allCars.length - 6);
+                const selectedCars = allCars.slice(startIndex, startIndex + 6);
+
+                // If we don't have 6 cars, fill with whatever we have
+                setFeaturedCars(selectedCars.length >= 6 ? selectedCars : allCars.slice(0, 6));
+            } catch (error) {
+                console.error("Error fetching featured cars:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchFeaturedCars();
+    }, []);
+
     return (
         <>
             <div className="h-auto w-full bg-white mb-1 py-7 shadow-md">
@@ -152,77 +188,50 @@ export default function Home() {
                                 <div className="space-y-2">
                                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Featured Vehicles</h2>
                                     <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                        Browse our latest arrivals and most popular models
+                                        Browse our daily featured selection of quality Japanese imports
                                     </p>
                                 </div>
                             </div>
-                            <div className="mx-auto grid max-w-5xl gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
-                                {[
-                                    {
-                                        title: "Toyota Supra",
-                                        year: "1995",
-                                        price: "$42,500",
-                                        mileage: "78,000 km",
-                                        image: "/placeholder.svg?height=300&width=400",
-                                    },
-                                    {
-                                        title: "Nissan Skyline GT-R",
-                                        year: "1999",
-                                        price: "$48,900",
-                                        mileage: "85,200 km",
-                                        image: "/placeholder.svg?height=300&width=400",
-                                    },
-                                    {
-                                        title: "Honda NSX",
-                                        year: "1992",
-                                        price: "$65,000",
-                                        mileage: "62,500 km",
-                                        image: "/placeholder.svg?height=300&width=400",
-                                    },
-                                    {
-                                        title: "Mazda RX-7",
-                                        year: "1997",
-                                        price: "$36,800",
-                                        mileage: "90,100 km",
-                                        image: "/placeholder.svg?height=300&width=400",
-                                    },
-                                    {
-                                        title: "Mitsubishi Lancer Evolution VI",
-                                        year: "1999",
-                                        price: "$32,500",
-                                        mileage: "95,300 km",
-                                        image: "/placeholder.svg?height=300&width=400",
-                                    },
-                                    {
-                                        title: "Subaru Impreza WRX STI",
-                                        year: "2004",
-                                        price: "$28,900",
-                                        mileage: "102,400 km",
-                                        image: "/placeholder.svg?height=300&width=400",
-                                    },
-                                ].map((car, index) => (
-                                    <Card key={index} className="overflow-hidden">
-                                        <div className="relative h-48">
-                                            <img src={car.image || "/placeholder.svg"} alt={car.title} className="object-cover" />
-                                            <div className="absolute top-2 right-2">
-                                                <Badge className="bg-[#0b305e]">{car.year}</Badge>
-                                            </div>
-                                        </div>
-                                        <CardContent className="p-4">
-                                            <div className="space-y-2">
-                                                <h3 className="font-bold">{car.title}</h3>
-                                                <div className="flex justify-between">
-                                                    <span className="text-xl font-bold text-[#0b305e]">{car.price}</span>
-                                                    <span className="text-gray-500">{car.mileage}</span>
+
+                            {loading ? (
+                                <div className="flex justify-center py-12">
+                                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#0b305e]"></div>
+                                </div>
+                            ) : (
+                                <div className="mx-auto grid max-w-5xl gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+                                    {featuredCars.map((car) => (
+                                        <Card key={car.id} className="overflow-hidden">
+                                            <div className="relative h-48">
+                                                <img
+                                                    src={car.imgURL || "/placeholder.svg"}
+                                                    alt={car.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                                <div className="absolute top-2 right-2">
+                                                    <Badge className="bg-[#0b305e]">{car.year}</Badge>
                                                 </div>
-                                                <Button variant="outline" className="w-full mt-2">
-                                                    View Details
-                                                </Button>
                                             </div>
-                                        </CardContent>
-                                    </Card>
-                                ))}
-                            </div>
+                                            <CardContent className="p-4">
+                                                <div className="space-y-2">
+                                                    <h3 className="font-bold">{car.name}</h3>
+                                                    <div className="flex justify-between">
+                                                        <span className="text-xl font-bold text-[#0b305e]">
+                                                            ${car.price?.toLocaleString()}
+                                                        </span>
+                                                        <span className="text-gray-500">{car.km} km</span>
+                                                    </div>
+                                                    <Link to={car.route || `/store/${car.id}`}>
+                                                        <Button variant="outline" className="w-full mt-2">
+                                                            View Details
+                                                        </Button>
+                                                    </Link>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    ))}
+                                </div>
+                            )}
+
                             <div className="flex justify-center">
                                 <Link to="/store">
                                     <Button className="bg-[#0b305e] hover:bg-[#0a2a54]">
@@ -232,7 +241,6 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-
                     {/* How It Works */}
                     <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
                         <div className="container px-4 md:px-6">
@@ -306,21 +314,21 @@ export default function Home() {
                                         location: "California, USA",
                                         quote:
                                             "The Nissan Skyline I imported through CarsFromJapan exceeded all my expectations. The process was smooth and the car arrived in perfect condition.",
-                                        image: "/placeholder.svg?height=100&width=100",
+                                        image: "src/assets/images/CustomerLuffy.jpg",
                                     },
                                     {
                                         name: "Sarah Johnson",
                                         location: "Ontario, Canada",
                                         quote:
                                             "I was nervous about importing a car from Japan, but the team at CarsFromJapan made it so easy. My Toyota Supra is a dream come true!",
-                                        image: "/placeholder.svg?height=100&width=100",
+                                        image: "src/assets/images/CustomerNami.jpg",
                                     },
                                     {
                                         name: "Michael Rodriguez",
                                         location: "Texas, USA",
                                         quote:
                                             "The transparency throughout the process was refreshing. No hidden fees, no surprises - just a beautiful Mazda RX-7 delivered to my door.",
-                                        image: "/placeholder.svg?height=100&width=100",
+                                        image: "src/assets/images/CustomerAce.jpeg",
                                     },
                                 ].map((testimonial, index) => (
                                     <Card key={index} className="overflow-hidden">
@@ -378,7 +386,9 @@ export default function Home() {
                                         to help you every step of the way.
                                     </p>
                                     <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                                        <Button className="bg-white text-[#0b305e] hover:bg-gray-100">Browse Inventory</Button>
+                                        <Link to="/store">
+                                            <Button className="bg-white text-[#0b305e] hover:bg-gray-100">Browse Inventory</Button>
+                                        </Link>
                                         <Button variant="outline" className="text-white border-white hover:bg-[#0a2a54]">
                                             Contact Us
                                         </Button>
